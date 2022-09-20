@@ -11,7 +11,7 @@ public class Bookstore1Application {
 	}
 
 	@Bean 
-	public CommandLineRunner demo(BookRepository repository, CategoryRepository crepository) {
+	public CommandLineRunner demo(BookRepository repository, CategoryRepository crepository, UserRepository urepository) {
 		return (args) -> {
 			
 			Category c1 = new Category("Horror");
@@ -25,6 +25,13 @@ public class Bookstore1Application {
 			repository.save(b1);
 			repository.save(b2);
 			repository.save(b3);
+			
+			User user1 = new User("user", "$2a$10$9285oWcngh3lMdh1JULvGuqE4wNjNNCT05QfxTTtr5CGmkXdLoKMq", "USER");
+			User user2 = new User("admin", "$2a$10$MNBzokIF1hsSPDSgUfNVSO6snIe51DjTBB1pacePmQmQBqguSA32a", "ADMIN");
+			
+			urepository.save(user1);
+			urepository.save(user2);
+			
 		};
 	}
 }
