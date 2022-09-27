@@ -45,4 +45,15 @@ public class Bookstore1Controller {
 		repository.save(book); 
 		return "redirect:booklist2";
 	}
+	
+	@RequestMapping(value="/books", method = RequestMethod.GET)
+    public @ResponseBody List<Book> bookListRest() {	
+        return (List<Book>) repository.findAll();
+    }    
+
+	
+    @RequestMapping(value="/book/{id}", method = RequestMethod.GET)
+    public @ResponseBody Optional<Book> findBookRest(@PathVariable("id") Long bookId) {	
+    	return repository.findById(bookId);
+    }       
 }
